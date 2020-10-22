@@ -12,10 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Author: lcj
- * @Date: 2020/10/22 14:28
- * @Description: 退出成功处理类
- * @Version: 0.0.1
+ * @ClassName JwtLogoutSuccessHandler
+ * @Description 登出成功处理类
+ * @Author liucaijing
+ * @Date 2020/10/21 21:59
+ * @Version 1.0
  */
 @Configuration
 public class JwtLogoutSuccessHandler implements LogoutSuccessHandler {

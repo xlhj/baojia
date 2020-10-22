@@ -14,10 +14,11 @@ import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @Author: lcj
- * @Date: 2020/10/22 9:39
- * @Description: TODO
- * @Version: 0.0.1
+ * @ClassName TokenUtils
+ * @Description token相关工具类
+ * @Author liucaijing
+ * @Date 2020/10/20 23:57
+ * @Version 1.0
  */
 public class JwtTokenUtils {
 

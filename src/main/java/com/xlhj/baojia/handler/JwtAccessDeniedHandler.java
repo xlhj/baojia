@@ -10,10 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Author: lcj
- * @Date: 2020/10/22 10:15
- * @Description: 无权限访问处理类
- * @Version: 0.0.1
+ * @ClassName JwtAccessDeniedHandler
+ * @Description 无权限访问处理类
+ * @Author liucaijing
+ * @Date 2020/10/21 20:20
+ * @Version 1.0
  */
 @Component
 public class JwtAccessDeniedHandler implements AccessDeniedHandler {
