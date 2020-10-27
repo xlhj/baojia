@@ -47,6 +47,9 @@ logging:
 
 jwt:
   header: Authorization
-  tokenPrefix: Bearer #token前缀
+  #tokenPrefix: Bearer #token前缀
   tokenSecret: qazxswedcvfrtgbnhyujmkiolp #密钥
-  tokenExpired: 900 #token过期时间(秒)
+  tokenExpired: 3600000 #token过期时间(30分钟)
+
+allowed:
+  origin: http://localhost:9528/
