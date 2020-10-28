@@ -7,6 +7,7 @@ import com.xlhj.baojia.mapper.SysUserMapper;
 import com.xlhj.baojia.service.SysUserService;
 import com.xlhj.baojia.util.JwtTokenUtils;
 import com.xlhj.baojia.vo.LoginBody;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sun.rmi.runtime.Log;
 
@@ -23,6 +24,9 @@ import java.util.Map;
  */
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+
+    @Autowired
+    private SysUserMapper userMapper;
 
     private Map<String, LoginBody> users = new HashMap<>();
     {
@@ -49,25 +53,25 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Resource
     private AuthenticationManager authenticationManager;
 
-    *//**
+    /**
      * 用户登录
      * @param username 用户名
      * @param password 密码
      * @return
-     *//*
-    @Override
+     */
+    /*@Override
     public String login(String username, String password) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(username, password));
         LoginUser loginUser = (LoginUser) authentication.getPrincipal();
         String token = JwtTokenUtils.createToken(loginUser);
         return token;
-    }
+    }*/
 
-    *//**
+    /**
      * 根据用户名查询用户信息
      * @param username
      * @return
-     *//*
+     */
     @Override
     public SysUser selectUserByUserName(String username) {
         QueryWrapper<SysUser> wrapper = new QueryWrapper<>();
@@ -76,7 +80,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
         return user;
     }
 
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         System.out.println(encoder.encode("123456"));
     }*/

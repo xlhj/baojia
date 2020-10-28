@@ -21,6 +21,13 @@ public interface SysUserService extends IService<SysUser> {
     LoginBody validateUser(LoginBody loginBody);
 
     /**
+     * 根据用户名查询用户信息
+     * @param username
+     * @return
+     */
+    SysUser selectUserByUserName(String username);
+
+    /**
      * 用户登录
      * @param username 用户名
      * @param password 密码

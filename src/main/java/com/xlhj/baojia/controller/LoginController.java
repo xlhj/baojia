@@ -1,7 +1,9 @@
 package com.xlhj.baojia.controller;
 
+import cn.hutool.core.util.StrUtil;
 import com.xlhj.baojia.common.ResultCode;
 import com.xlhj.baojia.common.ResultData;
+import com.xlhj.baojia.entity.SysUser;
 import com.xlhj.baojia.service.SysUserService;
 import com.xlhj.baojia.util.JwtTokenUtils;
 import com.xlhj.baojia.vo.LoginBody;
@@ -58,7 +60,17 @@ public class LoginController {
      */
     @GetMapping("info")
     @ResponseBody
-    public ResultData getInfo() {
+    public ResultData getInfo(@RequestParam("token") String token) {
+        String username = jwtToken.getUsernameFromToken(token);
+        if (StrUtil.isNotEmpty(username)) {
+            SysUser sysUser = userService.selectUserByUserName(username);
+            if (sysUser != null) {
+                Boolean flag = jwtToken.validateToken(token, sysUser.getUserName());
+                if (flag) {
+                    //ResultData.ok().data("")
+                }
+            }
+        }
         return ResultData.ok().data("roles","[admin]").data("name","admin").data("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
     }
 

@@ -2,6 +2,7 @@ package com.xlhj.baojia.config;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.cors.CorsConfiguration;
@@ -17,13 +18,13 @@ import org.springframework.web.filter.CorsFilter;
  */
 @Slf4j
 @Configuration
-public class GlobalCorsConfig {
+public class CorsConfig {
 
     @Value("${allowed.origin}")
     private String allowedOrigin;
 
     @Bean
-    public CorsFilter corsFilter() {
+    public FilterRegistrationBean corsFilter() {
         log.info(this.allowedOrigin);
         //添加CORS配置信息
         CorsConfiguration config = new CorsConfiguration();
@@ -39,12 +40,16 @@ public class GlobalCorsConfig {
         config.addAllowedMethod("POST");
         config.addAllowedMethod("DELETE");
         config.addAllowedMethod("PATCH");
+        config.setMaxAge(3600L);
         //允许的头信息
         config.addAllowedHeader("*");
         //添加映射路径，拦截一切请求
         UrlBasedCorsConfigurationSource configurationSource = new UrlBasedCorsConfigurationSource();
         configurationSource.registerCorsConfiguration("/**", config);
         //返回新的CorsFilter
-        return new CorsFilter(configurationSource);
+        //return new CorsFilter(configurationSource);
+        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean(new CorsFilter(configurationSource));
+        filterRegistrationBean.setOrder(0);
+        return filterRegistrationBean;
     }
 }
